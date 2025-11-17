@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vlhmm Profile</title>
+
+  <!-- BOOTSTRAP OPTIONAL (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#111;
+      --panel:#0f0f10;
+      --accent:#19b6c9;
+      --accent2:#ff4b5c;
+      --muted:rgba(255,255,255,0.08);
+      --text:#fff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:Montserrat,system-ui;overflow-x:hidden;}
+    html{scroll-behavior:smooth;}
+
+    /* NAV */
+    .social-top{position:fixed;top:0;left:0;right:0;height:48px;display:flex;justify-content:center;align-items:center;gap:28px;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);z-index:1000;}
+    .social-top a{color:#ccc;text-decoration:none;font-size:0.85rem;} 
+    .social-top a:hover{color:#fff;}
+
+    /* HOME */
+    .wrap{display:grid;grid-template-columns:1fr 1fr;height:100vh;align-items:center;}
+    .left{position:relative;height:100%;overflow:hidden;}
+    .watermark{position:absolute;inset:0;display:grid;grid-template-rows:1fr 1fr;align-items:center;justify-items:center;font-size:18vw;font-weight:900;color:var(--muted);} 
+    .info{position:absolute;left:20px;bottom:40px;font-size:0.85rem;writing-mode:vertical-rl;transform:rotate(180deg);color:#aaa;}
+
+    .ring{position:absolute;width:56px;height:56px;border-radius:50%;border:8px solid var(--accent);animation:floaty 4s infinite ease-in-out;} 
+    .small{width:32px;height:32px;border-width:6px;} .r2{border-color:var(--accent2);} 
+    .pos1{left:60px;top:18%;} .pos2{left:40px;top:55%;} .pos3{left:18%;bottom:18%;}
+
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
+
+    .right{padding:6vh 8vw;} 
+
+    .word,.sub{opacity:0;transform:translateY(30px);}
+    .hello-dot{display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--accent);} 
+    .red{background:var(--accent2)}
+
+    .reveal{animation:revealUp .7s forwards;} 
+    @keyframes revealUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+    /* SCROLL ANIMATION */
+    .reveal-scroll{
+      opacity:0;
+      transform:translateY(40px);
+      transition:.9s cubic-bezier(.25,.8,.25,1);
+    }
+    .reveal-scroll.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .slide-left{transform:translateX(-60px);opacity:0;}
+    .slide-left.show{transform:translateX(0);opacity:1;transition:1s;}
+
+    .slide-right{transform:translateX(60px);opacity:0;}
+    .slide-right.show{transform:translateX(0);opacity:1;transition:1s;}
+
+    section{
+      min-height:100vh;
+      padding:120px 8vw;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+    }
+
+    /* TOMBOL */
+    .center-btn{
+      display:inline-block;
+      margin-top:28px;
+      padding:14px 42px;
+      background:var(--accent2);
+      color:var(--bg);
+      font-size:1.7rem;
+      font-weight:800;
+      border-radius:50px;
+      text-decoration:none;
+      transition:.3s ease;
+      opacity:0;
+      transform:translateY(10px);
+    }
+    .center-btn.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .center-btn:hover{
+      transform:translateY(-4px);
+      background:var(--accent);
+      color:var(--text);
+    }
+
+    /* PRO SECTION */
+    .pro-section{padding:120px 10vw;border-top:1px solid rgba(255,255,255,0.05);} 
+    .pro-title{text-align:center;font-size:3rem;margin-bottom:60px;font-weight:800;letter-spacing:2px;} 
+    .pro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;} 
+    .pro-card{background:#0e0e0f;padding:28px;border-radius:18px;box-shadow:0 0 25px rgba(0,0,0,.45);transition:0.3s;} 
+    .pro-card:hover{transform:translateY(-10px);box-shadow:0 10px 35px rgba(0,0,0,.55);} 
+    .pro-card h3{margin-top:0;font-size:1.4rem;color:var(--accent);} 
+    .pro-card p{opacity:0.8;line-height:1.6;}
+
+    body {
+      cursor: url('https://files.catbox.moe/wqa0uk.png') 16 16, auto;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- 🔊 BACKGROUND MUSIC AUTOPLAY + AUTO UNMUTE SETELAH USER CLICK -->
+<audio id="bgm" src="lagu.mp3" autoplay loop muted></audio>
+
+<script>
+  const bgm = document.getElementById("bgm");
+
+  const enableBgm = () => {
+    bgm.muted = false;
+    bgm.play();
+    document.removeEventListener("click", enableBgm);
+  };
+
+  document.addEventListener("click", enableBgm);
+</script>
+<!-- END MUSIC -->
+
+<nav class="social-top">
+  <a href="#home">HOME</a>
+  <a href="#about">ABOUT ME</a>
+  <a href="#service">SERVICE</a>
+  <a href="#projects">PROJECTS</a>
+  <a href="#contact">CONTACT</a>
+</nav>
+
+<!-- HOME -->
+<div class="wrap" id="home">
+  <div class="left slide-left">
+    <div class="watermark">
+      <div style="opacity:.06">DES</div>
+      <div style="opacity:.04">IGN</div>
+    </div>
+    <div class="ring pos1"></div>
+    <div class="ring pos2 small r2"></div>
+    <div class="ring pos3"></div>
+    <div class="info">Internationally based Back-End and Information Systems Developer</div>
+  </div>
+
+  <div class="right slide-right">
+    <h1 class="word" id="w1" style="font-size:3.2rem;">Hello <span class="hello-dot"></span></h1>
+    <h2 class="sub" id="w2" style="font-size:2.4rem;">I am</h2>
+    <h1 class="word" id="w3" style="font-size:5.5rem;font-weight:900;">Vlhmm</h1>
+
+    <a href="video.html" class="center-btn" id="mainBtn">Gift You</a>
+
+
+    <!--<a href="flower.html" class="center-btn" id="mainBtn">Gift You</a> -->
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="pro-section">
+  <h1 class="pro-title reveal-scroll">About Me</h1>
+  <div class="pro-grid">
+    <div class="pro-card reveal-scroll"><h3>Experience</h3><p>Junior Back-End & Information System Developer.</p></div>
+    <div class="pro-card reveal-scroll"><h3>Skills</h3><p>Node.js, PHP, API Development, Database Management.</p></div>
+    <div class="pro-card reveal-scroll"><h3>Tools</h3><p>VSCode, Postman, Git, Linux.</p></div>
+    <div class="pro-card reveal-scroll"><h3>Focus</h3><p>Membangun sistem otomatis, scalable, dan high-performance.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="service" class="pro-section">
+  <h1 class="pro-title reveal-scroll">Services</h1>
+  <div class="pro-grid">
+    <div class="pro-card reveal-scroll"><h3>Web Development</h3><p>Website modern, cepat & responsif.</p></div>
+    <div class="pro-card reveal-scroll"><h3>API Engineering</h3><p>API yang scalable, cepat, dan efisien.</p></div>
+    <div class="pro-card reveal-scroll"><h3>System Integration</h3><p>Integrasi sistem otomatis.</p></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="pro-section">
+  <h1 class="pro-title reveal-scroll">Projects</h1>
+  <div class="pro-grid">
+    <div class="pro-card reveal-scroll"><h3>Management System</h3><p>Dashboard & data automation.</p></div>
+    <div class="pro-card reveal-scroll"><h3>API Payment</h3><p>Sistem pembayaran otomatis.</p></div>
+    <div class="pro-card reveal-scroll"><h3>Monitoring Tools</h3><p>Server monitoring real-time.</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="pro-section">
+  <h1 class="pro-title reveal-scroll">Contact</h1>
+  <div class="pro-grid">
+    <div class="pro-card reveal-scroll" style="grid-column:1/-1;text-align:center;">
+      <h3>Get In Touch</h3>
+      <p>Email: vlhmm@gmail.com</p>
+      <p>Instagram: @vlhmm__</p>
+      <p>Whatsapp: +62 878-7355-7631</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPT -->
+<script>
+
+  /* TEXT INTRO ANIMATION */
+  const seq=[w1,w2,w3]; 
+  seq.forEach((el,i)=>{setTimeout(()=>el.classList.add('reveal'),300+i*300)});
+
+  /* TOMBOL MUNCUL SETELAH TEKS */
+  setTimeout(()=>{
+    document.getElementById("mainBtn").classList.add("active");
+  }, 1200);
+
+  /* SCROLL REVEAL */
+  const revealElements = document.querySelectorAll('.reveal-scroll, .slide-left, .slide-right');
+
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('show');
+      }
+    });
+  },{threshold:0.2});
+
+  revealElements.forEach(el=>obs.observe(el));
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vlhmm Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#111;
+      --panel:#0f0f10;
+      --accent:#19b6c9;
+      --accent2:#ff4b5c;
+      --muted:rgba(255,255,255,0.08);
+      --text:#fff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:Montserrat,system-ui;overflow-x:hidden;}
+
+    /* NAV */
+    .social-top{position:fixed;top:0;left:0;right:0;height:48px;display:flex;justify-content:center;align-items:center;gap:28px;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);z-index:1000;}
+    .social-top a{color:#ccc;text-decoration:none;font-size:0.85rem;} .social-top a:hover{color:#fff;}
+
+    /* HOME */
+    .wrap{display:grid;grid-template-columns:1fr 1fr;height:100vh;align-items:center;}
+    .left{position:relative;height:100%;overflow:hidden;}
+    .watermark{position:absolute;inset:0;display:grid;grid-template-rows:1fr 1fr;align-items:center;justify-items:center;font-size:18vw;font-weight:900;color:var(--muted);} 
+    .info{position:absolute;left:20px;bottom:40px;font-size:0.85rem;writing-mode:vertical-rl;transform:rotate(180deg);color:#aaa;}
+
+    .ring{position:absolute;width:56px;height:56px;border-radius:50%;border:8px solid var(--accent);animation:floaty 4s infinite ease-in-out;} 
+    .small{width:32px;height:32px;border-width:6px;} .r2{border-color:var(--accent2);} 
+    .pos1{left:60px;top:18%;} .pos2{left:40px;top:55%;} .pos3{left:18%;bottom:18%;}
+
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
+
+    .right{padding:6vh 8vw;} .word{font-size:12vw;font-weight:900;opacity:0;transform:translateY(30px);} .sub{font-size:10vw;font-weight:300;opacity:0;transform:translateY(30px);} 
+    .hello-dot{display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--accent);} .red{background:var(--accent2)}
+
+    .reveal{animation:revealUp .7s forwards;} @keyframes revealUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+    /* SECTION STYLE */
+    section{min-height:100vh;padding:120px 8vw;display:flex;align-items:center;justify-content:center;flex-direction:column;}
+
+    /* LAPTOP MOCKUP */
+    .laptop-follow{
+      position:sticky;
+      top:120px;
+      width:820px;
+      max-width:95%;
+      margin:auto;
+      pointer-events:none;
+      transform:translateY(0);
+    }
+    .lap-frame{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#000;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 0 40px rgba(0,0,0,.5);
+      border:3px solid #222;
+      position:relative;
+    }
+    .lap-screen{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:2rem;
+      letter-spacing:2px;
+      font-weight:600;
+      opacity:0.4;
+    }
+    /* Frames that change with scroll */
+    .frame{position:absolute;inset:0;opacity:0;transition:opacity .4s ease;} 
+    .frame.show{opacity:1;}
+
+  </style>
+</head>
+<body>
+
+<nav class="social-top">
+  <a href="#home">HOME</a>
+  <a href="#about">ABOUT ME</a>
+  <a href="#service">SERVICE</a>
+  <a href="#projects">PROJECTS</a>
+  <a href="#contact">CONTACT</a>
+</nav>
+
+<!-- HOME -->
+<div class="wrap" id="home">
+  <div class="left">
+    <div class="watermark"><div style="opacity:.06">DES</div><div style="opacity:.04">IGN</div></div>
+    <div class="ring pos1"></div><div class="ring pos2 small r2"></div><div class="ring pos3"></div>
+    <div class="info">Internationally based Back-End and Information Systems Developer</div>
+  </div>
+
+  <div class="right">
+    <h1 class="word" id="w1">Hello <span class="hello-dot"></span></h1>
+    <h2 class="sub" id="w2">I am</h2>
+    <h1 class="word" id="w3">Vlhmm</h1>
+  </div>
+</div>
+
+<!-- LAPTOP MOCKUP FOLLOW SCROLL -->
+<div class="laptop-follow">
+  <div class="lap-frame">
+    <div class="lap-screen">LOADING UI…</div>
+
+    <div class="frame f1" style="background:#111;display:flex;align-items:center;justify-content:center;color:#19b6c9;font-size:2rem;">ABOUT UI</div>
+    <div class="frame f2" style="background:#0c0c12;display:flex;align-items:center;justify-content:center;color:#ff4b5c;font-size:2rem;">SERVICE UI</div>
+    <div class="frame f3" style="background:#161616;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;">PROJECT UI</div>
+    <div class="frame f4" style="background:#1a1a20;display:flex;align-items:center;justify-content:center;color:#19b6c9;font-size:2rem;">CONTACT UI</div>
+  </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="pro-section">
+  <h1 class="pro-title">About Me</h1>
+  <div class="pro-grid">
+    <div class="pro-card"><h3>Experience</h3><p>3+ tahun sebagai Back-End & Information System Developer.</p></div>
+    <div class="pro-card"><h3>Skills</h3><p>Node.js, PHP, API Development, Database Management.</p></div>
+    <div class="pro-card"><h3>Tools</h3><p>VSCode, Postman, Git, Linux.</p></div>
+    <div class="pro-card"><h3>Focus</h3><p>Membangun sistem otomatis, scalable, dan high-performance.</p></div>
+  </div>
+</section>
+
+<script>
+  /* TITLE ANIMATION */
+  const seq=[w1,w2,w3]; seq.forEach((el,i)=>{setTimeout(()=>el.classList.add('reveal'),300+i*300)});
+
+  /* SCROLL FRAME ANIMATION */
+  const frames=document.querySelectorAll('.frame');
+  const sections=['about','service','projects','contact'];
+
+  function activateFrame(i){frames.forEach(f=>f.classList.remove('show'));frames[i].classList.add('show');}
+
+  window.addEventListener('scroll',()=>{
+    let scrollPos=window.scrollY;
+    for(let i=0;i<sections.length;i++){
+      const sec=document.getElementById(sections[i]);
+      if(scrollPos >= sec.offsetTop - 300 && scrollPos < sec.offsetTop + sec.offsetHeight - 300){
+        activateFrame(i);
+      }
+    }
+  });
+</script>
+
+<!-- SERVICE -->
+<section id="service" class="pro-section">
+  <h1 class="pro-title">Services</h1>
+  <div class="pro-grid">
+    <div class="pro-card"><h3>Web Development</h3><p>Membangun website modern, cepat, responsif dan aman.</p></div>
+    <div class="pro-card"><h3>API Engineering</h3><p>Merancang API yang scalable, cepat, dan efisien.</p></div>
+    <div class="pro-card"><
